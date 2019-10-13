@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Tox1k/raspberry-security-control-panel/issues"
   },
-  "homepage": "https://github.com/Tox1k/raspberry-security-control-panel#readme"
+  "homepage": "https://github.com/Tox1k/raspberry-security-control-panel#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
