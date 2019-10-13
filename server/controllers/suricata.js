@@ -17,8 +17,8 @@ const execute = async ({ body: { command } }, res) => {
 
 const status = async ({ parameters }, res) => {
   const output = shell.exec('sudo service suricata status').stdout
-  if (output.includes('is not running')) return res.status(200).json({ status: 'not running' })
-  if (output.includes('is running')) return res.status(200).json({ status: 'running' })
+  if (output.includes('Active: inactive (dead)')) return res.status(200).json({ status: 'dead' })
+  if (output.includes('Active: active (running)')) return res.status(200).json({ status: 'running' })
   return res.status(200).json({ status: 'error' })
 }
 
