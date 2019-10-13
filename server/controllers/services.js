@@ -23,6 +23,7 @@ const execute = async ({ body: { command }, params: { service } }, res) => {
 }
 
 const status = async ({ params: { service } }, res) => {
+  console.log(service)
   if (service !== 'suricata' && service !== 'clamav' && service !== 'ossec') return res.status(400).json({ message: 'bad service!' })
   const output = shell.exec(`sudo service ${service} status`).stdout
   if (output.includes('Active: active (running)')) return res.status(200).json({ status: 'running' })
