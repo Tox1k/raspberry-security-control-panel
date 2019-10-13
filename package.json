@@ -1,0 +1,19 @@
+{
+  "name": "raspberry-security-control-panel",
+  "version": "1.0.0",
+  "description": "control panel for some raspberry services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tox1k/raspberry-security-control-panel.git"
+  },
+  "author": "Sol",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tox1k/raspberry-security-control-panel/issues"
+  },
+  "homepage": "https://github.com/Tox1k/raspberry-security-control-panel#readme"
+}
