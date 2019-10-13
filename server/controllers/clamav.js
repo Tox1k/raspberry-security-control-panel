@@ -12,7 +12,7 @@ const execute = async ({ body: { command } }, res) => {
       shell.exec('sudo service clamav restart')
       return
   }
-  return res.status(200).json({ message: 'ao' })
+  return res.status(200).json({ message: 'clamav' })
 }
 
 const status = async ({ parameters }, res) => {

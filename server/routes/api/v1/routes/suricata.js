@@ -6,9 +6,9 @@ const {
 } = require('../../../../middlewares/async')
 
 const {
-  test
+  status
 } = require('../../../../controllers/suricata')
 
-router.post('/test', asyncMiddleware(test))
+router.get('/status', asyncMiddleware(status))
 
 module.exports = router
