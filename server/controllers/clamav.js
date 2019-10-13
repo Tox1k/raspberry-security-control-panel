@@ -1,28 +1,14 @@
 const shell = require('shelljs')
 
-const execute = async ({ body: { command } }, res) => {
-  switch (command) {
-    case 'start':
-      shell.exec('sudo service clamav start')
-      return
-    case 'stop':
-      shell.exec('sudo service clamav stop')
-      return
-    case 'restart':
-      shell.exec('sudo service clamav restart')
-      return
-  }
-  return res.status(200).json({ message: 'clamav' })
-}
-
-const status = async ({ parameters }, res) => {
-  const output = shell.exec('sudo service clamav status').stdout
-  if (output.includes('Active: active (running)')) return res.status(200).json({ status: 'running' })
-  if (output.includes('Active: inactive (dead)')) return res.status(200).json({ status: 'dead' })
-  return res.status(400).json({ status: 'error' })
+const log = async ({ parameters }, res) => {
+  // const path = '/var/log/clamav/'
+  // const output = shell.tail('-500', path)
+  // console.log(output)
+  // if (output.stderr) return res.status(400).json({ message: output.stderr })
+  // return res.status(200).json({ log: output })
+  return res.status(200).json({ log: 'NO LOG FOR NOW' })
 }
 
 module.exports = {
-  execute,
-  status
+  log
 }

@@ -6,9 +6,9 @@ const {
 } = require('../../../../middlewares/async')
 
 const {
-  status
+  log
 } = require('../../../../controllers/clamav')
 
-router.get('/status', asyncMiddleware(status))
+router.get('/log', asyncMiddleware(log))
 
 module.exports = router

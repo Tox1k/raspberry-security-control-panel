@@ -1,28 +1,13 @@
 const shell = require('shelljs')
 
-const execute = async ({ body: { command } }, res) => {
-  switch (command) {
-    case 'start':
-      shell.exec('sudo service ossec start')
-      return
-    case 'stop':
-      shell.exec('sudo service ossec stop')
-      return
-    case 'restart':
-      shell.exec('sudo service ossec restart')
-      return
-  }
-  return res.status(200).json({ message: 'ossec' })
-}
-
-const status = async ({ parameters }, res) => {
-  const output = shell.exec('sudo service ossec status').stdout
-  if (output.includes('Active: inactive (dead)')) return res.status(200).json({ status: 'dead' })
-  if (output.includes('Active: active (running)')) return res.status(200).json({ status: 'running' })
-  return res.status(200).json({ status: 'error' })
+const log = async ({ parameters }, res) => {
+  const path = '/var/ossec/logs/ossec.log'
+  const output = shell.tail('-500', path)
+  console.log(output)
+  if (output.stderr) return res.status(400).json({ message: output.stderr })
+  return res.status(200).json({ log: output })
 }
 
 module.exports = {
-  execute,
-  status
+  log
 }
