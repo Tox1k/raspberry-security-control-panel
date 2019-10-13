@@ -48,7 +48,7 @@ app.use('/api', require('./routes/api/api'))
 
 app.get('/', (req, res) => {
   res.status(200).json({
-    title: 'Safe',
+    title: 'Raspberry Security Control Panel (RSCP)',
     version,
     author,
     legal: 'This project is licensed under the MIT License.'
