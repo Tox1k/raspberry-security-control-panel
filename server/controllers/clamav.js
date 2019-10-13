@@ -1,6 +1,6 @@
 const shell = require('shelljs')
 
-const log = async ({ parameters: { lines } }, res) => {
+const log = async ({ params: { lines } }, res) => {
   // const path = '/var/log/clamav/'
   // const output = shell.tail({'-n': lines}, path)
   // console.log(output)

@@ -1,6 +1,6 @@
 const shell = require('shelljs')
 
-const log = async ({ parameters: { lines } }, res) => {
+const log = async ({ params: { lines } }, res) => {
   const path = '/var/log/suricata/fast.log'
   const output = shell.tail({ '-n': lines }, path)
   console.log(output)
