@@ -2,22 +2,25 @@ const shell = require('shelljs')
 
 const execute = async ({ body: { command }, params: { service } }, res) => {
   if (service !== 'suricata' && service !== 'clamav' && service !== 'ossec') return res.status(400).json({ message: 'bad service!' })
+  let output
+  if (command !== 'start' && command !== 'stop' && command !== 'restart') return res.status(400).json({ message: 'bad command!' })
+
   switch (command) {
     case 'start':
-      shell.exec('sudo service clamav start')
-      return
+      output = shell.exec(`sudo service ${service} start`)
+      break
     case 'stop':
-      shell.exec('sudo service clamav stop')
-      return
+      output = shell.exec(`sudo service ${service} stop`)
+      break
     case 'restart':
-      shell.exec('sudo service clamav restart')
-      return
+      output = shell.exec(`sudo service ${service} restart`)
+      break
   }
-  return res.status(200).json({ message: 'clamav' })
+  if (output.stderr) return res.status(400).json({ message: output.stderr })
+  return res.status(200).json({ message: output.stdout })
 }
 
 const status = async ({ params: { service } }, res) => {
-  console.log(service)
   if (service !== 'suricata' && service !== 'clamav' && service !== 'ossec') return res.status(400).json({ message: 'bad service!' })
   const output = shell.exec(`sudo service ${service} status`).stdout
   if (output.includes('Active: active (running)')) return res.status(200).json({ status: 'running' })

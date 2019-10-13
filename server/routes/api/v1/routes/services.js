@@ -13,6 +13,6 @@ const {
 } = require('../../../../controllers/services')
 
 router.get('/:service/status', asyncMiddleware(status))
-router.post('/:service', asyncMiddleware(execute))
+router.post('/:service/execute', asyncMiddleware(execute))
 
 module.exports = router
