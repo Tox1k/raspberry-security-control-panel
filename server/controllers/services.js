@@ -8,19 +8,18 @@ const execute = async ({ body: { command }, params: { service } }, res) => {
   switch (command) {
     case 'start':
       output = shell.exec(`sudo service ${service} start`)
-      if (output.stderr) return res.status(400).json({ message: output.stderr })
-      return status(service, res)
+      break
 
     case 'stop':
       output = shell.exec(`sudo service ${service} stop`)
-      if (output.stderr) return res.status(400).json({ message: output.stderr })
-      return status(service, res)
+      break
 
     case 'restart':
       output = shell.exec(`sudo service ${service} restart`)
-      if (output.stderr) return res.status(400).json({ message: output.stderr })
-      return status(service, res)
+      break
   }
+  if (output.stderr) return res.status(400).json({ message: output.stderr })
+  return status(service, res)
 }
 
 const status = async ({ params: { service } }, res) => {
