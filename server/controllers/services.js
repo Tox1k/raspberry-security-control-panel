@@ -22,7 +22,7 @@ const status = async ({ params: { service } }, res) => {
   const output = shell.exec(`sudo service ${service} status`).stdout
   if (output.includes('Active: active (running)')) return res.status(200).json({ status: 'running' })
   if (output.includes('Active: inactive (dead)')) return res.status(200).json({ status: 'dead' })
-  return res.status(400).json({ status: 'error' })
+  return res.status(200).json({ status: 'error' })
 }
 
 module.exports = {

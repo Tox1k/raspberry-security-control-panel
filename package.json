@@ -10,7 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/Tox1k/rscp-server.git"
   },
-  "author": "Sol",
+  "authors": [{
+    "name": "Riccardo Sangiorgio",
+    "github": "https://github.com/Richard1984/"
+  }, {
+    "name": "Oleksandr Soludchyk",
+    "github": "https://github.com/Tox1k/"
+  }],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Tox1k/rscp-server/issues"
