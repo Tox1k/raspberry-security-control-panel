@@ -1,5 +1,5 @@
 {
-  "name": "raspberry-security-control-panel",
+  "name": "rscp-server",
   "version": "1.0.0",
   "description": "Control panel for some raspberry services.",
   "main": "server.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Tox1k/raspberry-security-control-panel.git"
+    "url": "git+https://github.com/Tox1k/rscp-server.git"
   },
   "author": "Sol",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Tox1k/raspberry-security-control-panel/issues"
+    "url": "https://github.com/Tox1k/rscp-server/issues"
   },
-  "homepage": "https://github.com/Tox1k/raspberry-security-control-panel#readme",
+  "homepage": "https://github.com/Tox1k/rscp-server#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1"
