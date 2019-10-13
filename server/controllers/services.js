@@ -19,7 +19,7 @@ const execute = async ({ body: { command }, params: { service } }, res) => {
       break
   }
   if (output.stderr) return res.status(400).json({ message: output.stderr })
-  return status({ service }, res)
+  return status({ params: { service } }, res)
 }
 
 const status = async ({ params: { service } }, res) => {
