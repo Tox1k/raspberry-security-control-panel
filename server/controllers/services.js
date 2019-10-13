@@ -1,6 +1,7 @@
 const shell = require('shelljs')
 
-const execute = async ({ body: { command }, params: { service } }, res) => {
+const execute = async ({ body: { command }, params }, res) => {
+  const { service } = params
   if (service !== 'suricata' && service !== 'clamav' && service !== 'ossec') return res.status(400).json({ message: 'bad service!' })
   let output
   if (command !== 'start' && command !== 'stop' && command !== 'restart') return res.status(400).json({ message: 'bad command!' })
@@ -19,7 +20,7 @@ const execute = async ({ body: { command }, params: { service } }, res) => {
       break
   }
   if (output.stderr) return res.status(400).json({ message: output.stderr })
-  return status(service, res)
+  return status(params, res)
 }
 
 const status = async ({ params: { service } }, res) => {
