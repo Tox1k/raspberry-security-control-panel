@@ -28,6 +28,7 @@ const status = async ({ params: { service } }, res) => {
   service = service === 'antivirus' ? 'clamav' : service === 'ids' ? 'suricata' : service === 'collector' ? 'ossec' : service
   console.log(service)
   if (service !== 'suricata' && service !== 'clamav' && service !== 'ossec') return res.status(400).json({ message: 'bad service!' })
+  service = service === 'clamav' ? 'clamav-freshclam' : service
   const output = shell.exec(`service ${service} status`).stdout
   if (service === 'ossec') shell.exec('/var/ossec/bin/ossec-control reload')
   if (output.includes('Active: active (running)')) return res.status(200).json({ status: 'running' })
