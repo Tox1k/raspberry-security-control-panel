@@ -9,15 +9,15 @@ const execute = async ({ body: { command }, params: { service } }, res) => {
 
   switch (command) {
     case 'start':
-      output = shell.exec(`sudo service ${service} start`)
+      output = shell.exec(`service ${service} start`)
       break
 
     case 'stop':
-      output = shell.exec(`sudo service ${service} stop`)
+      output = shell.exec(`service ${service} stop`)
       break
 
     case 'restart':
-      output = shell.exec(`sudo service ${service} restart`)
+      output = shell.exec(`service ${service} restart`)
       break
   }
   if (output.stderr) return res.status(400).json({ status: 'error', message: output.stderr })
@@ -28,7 +28,8 @@ const status = async ({ params: { service } }, res) => {
   service = service === 'antivirus' ? 'clamav' : service === 'ids' ? 'suricata' : service === 'collector' ? 'ossec' : service
   console.log(service)
   if (service !== 'suricata' && service !== 'clamav' && service !== 'ossec') return res.status(400).json({ message: 'bad service!' })
-  const output = shell.exec(`sudo service ${service} status`).stdout
+  const output = shell.exec(`service ${service} status`).stdout
+  if (service === 'ossec') shell.exec('/var/ossec/bin/ossec-control restart')
   if (output.includes('Active: active (running)')) return res.status(200).json({ status: 'running' })
   if (output.includes('Active: inactive (dead)')) return res.status(200).json({ status: 'dead' })
   return res.status(200).json({ status: 'error' })
