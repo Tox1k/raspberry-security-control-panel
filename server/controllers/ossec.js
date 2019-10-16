@@ -20,7 +20,7 @@ const change = async ({ body: { ip } }, res) => {
   ip = ip.trim()
   if (!validateIp(ip)) return res.status(400).json({ message: 'invalid ip format!' })
   const path = '/var/ossec/etc/ossec.conf'
-  const output = shell.exec(`sed 's/<server-ip>(\b[0-9]{1,3}\.){3}[0-9]{1,3}\b'/"<server-ip>${ip}"/ ${path} > /var/ossec/etc/ossec.test`)
+  const output = shell.exec(`sed -r 's/<server-ip>(\b[0-9]{1,3}\.){3}[0-9]{1,3}\b'/"<server-ip>${ip}"/ ${path} > /var/ossec/etc/ossec.test`)
   if (output.stderr) return res.status(400).json({ message: output.stderr })
   return res.status(200).json({ log: output.stdout })
 }
