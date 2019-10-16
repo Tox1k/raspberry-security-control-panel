@@ -7,9 +7,10 @@ const ossec = require('./routes/ossec')
 const clamav = require('./routes/clamav')
 const services = require('./routes/services')
 
-router.use('/suricata', suricata)
-router.use('/ossec', ossec)
-router.use('/clamav', clamav)
+// TODO FIX BACK
+router.use('/ids', suricata)
+router.use('/collector', ossec)
+router.use('/antivirus', clamav)
 router.use('/services', services)
 
 module.exports = router
