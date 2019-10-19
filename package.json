@@ -1,22 +1,25 @@
 {
   "name": "rscp-server",
   "version": "1.0.0",
-  "description": "Control panel for some raspberry services.",
+  "description": "Control panel for some Raspberry services.",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "client": "./client.sh"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Tox1k/rscp-server.git"
   },
   "authors": [{
-    "name": "Riccardo Sangiorgio",
-    "github": "https://github.com/Richard1984/"
-  }, {
-    "name": "Oleksandr Soludchyk",
-    "github": "https://github.com/Tox1k/"
-  }],
+      "name": "Riccardo Sangiorgio",
+      "github": "https://github.com/Richard1984/"
+    },
+    {
+      "name": "Oleksandr Soludchyk",
+      "github": "https://github.com/Tox1k/"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Tox1k/rscp-server/issues"

@@ -6,6 +6,7 @@ const morgan = require('morgan')
 const express = require('express')
 const bodyParser = require('body-parser')
 const compression = require('compression')
+const history = require('connect-history-api-fallback')
 
 // VARS
 const port = process.env.PORT || 3000
@@ -21,8 +22,11 @@ const app = express()
 
 if (env === 'development') {
   app.use(morgan('dev'))
+} else if (env === 'production') {
+  app.use(history())
 }
 
+app.use(express.static('server/public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(helmet())
