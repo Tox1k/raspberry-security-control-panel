@@ -4,6 +4,7 @@ const execute = async ({ body: { command }, params: { service } }, res) => {
   service = service === 'antivirus' ? 'clamav' : service === 'ids' ? 'suricata' : service === 'collector' ? 'ossec' : service
   console.log(service)
   if (service !== 'suricata' && service !== 'clamav' && service !== 'ossec') return res.status(400).json({ message: 'bad service!' })
+  service = service === 'clamav' ? 'clamav-freshclam' : service
   let output
   if (command !== 'start' && command !== 'stop' && command !== 'restart') return res.status(400).json({ message: 'bad command!' })
 
@@ -30,7 +31,7 @@ const status = async ({ params: { service } }, res) => {
   if (service !== 'suricata' && service !== 'clamav' && service !== 'ossec') return res.status(400).json({ message: 'bad service!' })
   service = service === 'clamav' ? 'clamav-freshclam' : service
   const output = shell.exec(`service ${service} status`).stdout
-  if (service === 'ossec') shell.exec('/var/ossec/bin/ossec-control reload')
+  // if (service === 'ossec') shell.exec('/var/ossec/bin/ossec-control reload')
   if (output.includes('Active: active (running)')) return res.status(200).json({ status: 'running' })
   if (output.includes('Active: inactive (dead)')) return res.status(200).json({ status: 'dead' })
   return res.status(200).json({ status: 'error' })

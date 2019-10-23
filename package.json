@@ -11,7 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/Tox1k/rscp-server.git"
   },
-  "authors": [{
+  "authors": [
+    {
       "name": "Riccardo Sangiorgio",
       "github": "https://github.com/Richard1984/"
     },
